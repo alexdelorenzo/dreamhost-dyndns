@@ -1,4 +1,4 @@
-USAGE
+README
 =======
 
 Setup
@@ -8,9 +8,28 @@ Setup
 
 * Update `domains.csv` with the domain you wish to modify followed by the API key. Use a comma to separate the two values. No spaces.
 
-* Run `chmod +x run.sh` to make the script executable.
 
+
+Usage
+-----------------
+
+`usage: update_ip.py [-h] [-f FILE] [-s SERVER] [-k KEY] [-ip IP ADDRESS]
+
+Update your DreamHost DNS records.
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -f FILE         Comma-separated server/key file.
+  -s SERVER       Server's domain name
+  -k KEY          DreamHost API Key
+  -ip IP ADDRESS  Desired A record value`
+
+
+
+I've provided a simple shell script that interfaces with `dhlib`. It has been deprecated by `update_ip.update_ip_csv` 
+* Run `chmod +x run.sh` to make the script executable.
 * Run `./run.sh` to update your DNS records : )
+
 
 
 License
