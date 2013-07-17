@@ -13,7 +13,8 @@ Setup
 Usage
 -----------------
 
-```usage: update_ip.py [-h] [-f FILE] [-s SERVER] [-k KEY] [-ip IP ADDRESS]
+```
+usage: update_ip.py [-h] [-f FILE] [-s SERVER] [-k KEY] [-ip IP ADDRESS]
 
 Update your DreamHost DNS records.
 
@@ -22,7 +23,8 @@ optional arguments:
   -f FILE         Comma-separated server/key file.
   -s SERVER       Server's domain name
   -k KEY          DreamHost API Key
-  -ip IP ADDRESS  Desired A record value```
+  -ip IP ADDRESS  Desired A record value
+```
 
 
 
