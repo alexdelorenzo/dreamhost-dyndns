@@ -40,6 +40,9 @@ License
 All code, unless specified, is licensed under GPLv3. Copyright 2013 Alex DeLorenzo (alex@alexdelorenzo.info).
 
 Thanks to [Laurens Simonis][1] for `dreampylib.py`. Copyright 2009 Laurens Simonis.
-* Dreampylib is (c) 2009 by Laurens Simonis. Use it at your own risk, do with it whatever you like, but I am not responsible for whatever you do with it.
+
+'''
+Dreampylib is (c) 2009 by Laurens Simonis. Use it at your own risk, do with it whatever you like, but I am not responsible for whatever you do with it.
+'''
 
 [1]: http://dreampylib.laurenssimonis.com/
