@@ -129,7 +129,7 @@ def main():
 				nargs=1, 
 				metavar='SERVER', 
 				type=str, 
-				help="Server's domain name'  )
+				help="Server's domain name"  )
 
 	parser.add_argument(
 				'-k',
