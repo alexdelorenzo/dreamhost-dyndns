@@ -28,7 +28,7 @@ optional arguments:
 
 
 
-I've provided a simple shell script that interfaces with `dhlib`. It has been deprecated by `update_ip.update_ip_csv` 
+I've provided a simple shell script that interfaces with `dhlib`. It has been deprecated by `update_ip.update_via_csv()` 
 * Run `chmod +x run.sh` to make the script executable.
 * Run `./run.sh` to update your DNS records : )
 
@@ -41,8 +41,10 @@ All code, unless specified, is licensed under GPLv3. Copyright 2013 Alex DeLoren
 
 Thanks to [Laurens Simonis][1] for `dreampylib.py`. Copyright 2009 Laurens Simonis.
 
-'''
+```
 Dreampylib is (c) 2009 by Laurens Simonis. Use it at your own risk, do with it whatever you like, but I am not responsible for whatever you do with it.
-'''
+```
+
+Thanks to random internetter for url and regex in `getip.py`
 
 [1]: http://dreampylib.laurenssimonis.com/
