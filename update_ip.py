@@ -1,5 +1,5 @@
 import getip
-import dhlib
+import dreampylib
 import csv
 
 domain_file, delim = 'domains.csv', ','
@@ -10,7 +10,7 @@ def _grab_ip():
 	return ipaddr
  
 def _connect_api(server, key):
-	connection = dhlib._connect(server, key)
+	connection = DreampyLib(server, key)
 
 	print "Connected to DH API: ", connection.IsConnected(), "(", server, ")"
 
