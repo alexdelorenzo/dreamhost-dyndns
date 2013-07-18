@@ -5,7 +5,6 @@ Setup
 -----------------
 
 * Visit api.dreamhost.com and obtain a API key with ability to use the dns-* API
-
 * Update `domains.csv` with the domain you wish to modify followed by the API key. Use a comma to separate the two values. No spaces.
 
 
@@ -14,7 +13,7 @@ Usage
 -----------------
 
 ```
-usage: update_ip.py [-h] [-f FILE] [-s SERVER] [-k KEY] [-ip IP ADDRESS]
+usage: update_ip.py [-h] [-f FILE] [[-s SERVER] [-k KEY] [-ip IP ADDRESS]]
 
 Update your DreamHost DNS records.
 
@@ -28,7 +27,7 @@ optional arguments:
 
 
 
-I've provided a simple shell script that interfaces with `dhlib`. It has been deprecated by `update_ip.update_via_csv()` 
+I've provided a simple shell script that interfaces with `update_ip.py`. It has been deprecated by `update_ip.update_via_csv()` , but still works.
 * Run `chmod +x run.sh` to make the script executable.
 * Run `./run.sh` to update your DNS records : )
 
