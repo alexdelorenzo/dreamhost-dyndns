@@ -99,13 +99,13 @@ def update_via_csv(csvfile=None):
 			connection = _connect_api(server, key)	
 			updateable = _check_record(connection, server, ipaddr)
 
-			if updateable is True:
+			if updateable:
 				updateable_servers.append(connection)
 
 	for connection in updateable_servers:
 		update_ip(connection=connection)
 	
-	if len(to_be_culled) is not 0:
+	if len(to_be_culled):
 		for tup in to_be_culled:
 			connection, server, value = tup
 			connection.dns.remove_record(record=server, value=value, type='A')		
