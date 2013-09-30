@@ -106,8 +106,7 @@ def update_via_csv(csvfile=None):
 		update_ip(connection=connection)
 	
 	if len(to_be_culled):
-		for tup in to_be_culled:
-			connection, server, value = tup
+		for connect, server, value in to_be_culled:
 			connection.dns.remove_record(record=server, value=value, type='A')		
 
 def main():
