@@ -26,10 +26,8 @@ def _to_be_culled(connection, record, value):
 
 def _check_record(connection, server, ipaddr):
 	records = connection.dns.list_records()
-
-	no_records = len(records) is 0	
 	
-	if no_records:
+	if not len(records):
 		return True
 
 	for record in records:
@@ -69,15 +67,15 @@ def _check_result(result):
 	print "\n"
 
 def update_ip(server=None, key=None, ipaddr=None, connection=None):
-	if connection is not None:
-		server = connection._user
-		key = connection._key
-	else:
+	if connection is None:
 		if server is None:
 			server = "yourdomain.com"
 		if key is None: 
 			key = "YOURKEYGOESHERE"
-		connection = _connect_api(server, key)	
+		connection = _connect_api(server, key)
+	else:
+		server = connection._user
+		key = connection._key
 
 	if ipaddr is None: 
 		ipaddr = _grab_ip()
@@ -92,7 +90,7 @@ def update_via_csv(csvfile=None):
 	
 	ipaddr, updateable_servers = _grab_ip(), list()
 
-	with open(domain_file, 'r') as domain_csv:
+	with open(csvfile, 'r') as domain_csv:
 		reader = csv.reader(domain_csv, delimiter=delim)
 
 		for row in reader:
@@ -106,7 +104,7 @@ def update_via_csv(csvfile=None):
 	for connection in updateable_servers:
 		update_ip(connection=connection)
 	
-	if len(to_be_culled):
+	if to_be_culled:
 		for connect, server, value in to_be_culled:
 			connection.dns.remove_record(record=server, value=value, type='A')		
 
