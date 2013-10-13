@@ -36,7 +36,7 @@ I've provided a simple shell script that interfaces with `update_ip.py`. It has 
 License
 -----------------
 
-All code, unless specified, is licensed under GPLv3. Copyright 2013 Alex DeLorenzo (alex@alexdelorenzo.info).
+All code, unless specified, is licensed under GPLv3.
 
 Thanks to [Laurens Simonis][1] for `dreampylib.py`. Copyright 2009 Laurens Simonis.
 
