@@ -2,7 +2,8 @@ import getip
 import dreampylib
 import csv
 
-# this needs to be wrapped up in a class. I can't sleep knowing I have globals in public code
+# one day, i'll wrap this up in a class.
+## it's been a year, I'll never do it.
 domain_file, delim = 'domains.csv', ','
 to_be_culled = []
 
