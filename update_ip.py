@@ -146,11 +146,11 @@ def main():
 
 	a = parser.parse_args()
 	
-	manual_update =  \
-		a.server is not None and a.key is not None and a.ip is not None
+	args = a.server, a.key, a.ip
+	
+	manual_update =  all(arg is not None for arg in args)
 
-	insufficient_values_passed = \
-		a.server is not None or a.key is not None or a.ip is not None
+	insufficient_values_passed = any(arg is not None for arg in args)
 	
 	if manual_update:
 		update_ip(server=a.server[0], key=a.key[0], ipaddr=a.ip[0])
