@@ -13,10 +13,10 @@ def _grab_ip():
 def _connect_api(server, key):
 	connection = DreampyLib(server, key)
 
-	print "Connected to DH API: ", connection.IsConnected(), "(", server, ")"
+	print("Connected to DH API: ", connection.IsConnected(), "(", server, ")")
 
 	if connection.IsConnected() is False:
-		print "Unable to connect. Check server name and API key values."
+		print("Unable to connect. Check server name and API key values.")
 		exit()
 
 	return connection
@@ -34,7 +34,7 @@ def _check_record(connection, server, ipaddr):
 		try:
 			name, value = record['record'], record['value']
 		except TypeError:
-			print records
+			print(records)
 			return False
 		else:
 			if name == server and value == str(ipaddr):
@@ -52,19 +52,19 @@ def _check_result(result):
 		result[2] == 'record_already_exists_remove_first')
 
 	if successful:
-		print "Success"		
+		print("Success")
 	elif no_such_zone:
-		print "\nPlease visit your Dreamhost control panel, go to " 
-		print "Manage Domain and add an 'A' record of '0.0.0.0' "
-		print "and save. Then reload this script."
-		print "\nThis is an artifact of the DH API. Please email Dreamhost"
-		print "if this is an inconvience (it is)."
+		print("\nPlease visit your Dreamhost control panel, go to ")
+		print("Manage Domain and add an 'A' record of '0.0.0.0' ")
+		print("and save. Then reload this script.")
+		print("\nThis is an artifact of the DH API. Please email Dreamhost")
+		print("if this is an inconvience (it is).")
 	elif up_to_date:
-		print "'A' record is up to date and points to your IP."
+		print("'A' record is up to date and points to your IP.")
 	else:
-		print result
+		print(result)
 	
-	print "\n"
+	print("\n")
 
 def update_ip(server=None, key=None, ipaddr=None, connection=None):
 	if connection is None:
@@ -80,7 +80,7 @@ def update_ip(server=None, key=None, ipaddr=None, connection=None):
 	if ipaddr is None: 
 		ipaddr = _grab_ip()
 	
-	print "-> Server: ", server, " Key: ", key, " IP: ", ipaddr
+	print("-> Server: ", server, " Key: ", key, " IP: ", ipaddr)
 	result = connection.dns.add_record(record=str(server), value=str(ipaddr), type="A")
 	_check_result(result)
 
@@ -155,7 +155,7 @@ def main():
 	if manual_update:
 		update_ip(server=a.server[0], key=a.key[0], ipaddr=a.ip[0])
 	elif insufficient_values_passed:
-		print "Please specify all values: server, key, and IP address"
+		print("Please specify all values: server, key, and IP address")
 	else:
 		update_via_csv(csvfile=a.file)
 
