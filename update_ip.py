@@ -117,7 +117,7 @@ def main():
 	parser = argparse.ArgumentParser(description="Update your DreamHost DNS records.")
 	parser.add_argument(
 				'-f', 
-				dest='file'
+				dest='file',
 			    	nargs=1,
 			   	metavar='FILE', 
 			    	type=str, 
