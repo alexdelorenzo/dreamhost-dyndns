@@ -4,7 +4,7 @@ README
 Setup
 -----------------
 
-* Visit api.dreamhost.com and obtain a API key with ability to use the dns-* API
+* Visit the [DreamHost control panel](https://panel.dreamhost.com/?tree=home.api) and obtain a API key with ability to use the dns-* API
 * Update `domains.csv` with the domain you wish to modify followed by the API key. Use a comma to separate the two values. No spaces.
 
 
