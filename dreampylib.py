@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 # Dreampylib - version 1.0
 # (c) 2009 by Laurens Simonis
 # See licence.txt for licencing info
