@@ -14,7 +14,7 @@ def _grab_ip():
 	return ipaddr
  
 def _connect_api(server, key):
-	connection = DreampyLib(server, key)
+	connection = dreampylib.DreampyLib(server, key)
 
 	print("Connected to DH API: ", connection.IsConnected(), "(", server, ")")
 
