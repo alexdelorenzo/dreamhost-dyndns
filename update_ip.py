@@ -12,7 +12,7 @@ to_be_culled = []
 def _grab_ip():
 	ipaddr = getip.get_external_ip()
 	return ipaddr
- 
+
 def _connect_api(server, key):
 	connection = dreampylib.DreampyLib(server, key)
 
@@ -29,7 +29,7 @@ def _to_be_culled(connection, record, value):
 
 def _check_record(connection, server, ipaddr):
 	records = connection.dns.list_records()
-	
+
 	if not len(records):
 		return True
 
@@ -66,23 +66,23 @@ def _check_result(result):
 		print("'A' record is up to date and points to your IP.")
 	else:
 		print(result)
-	
+
 	print("\n")
 
 def update_ip(server=None, key=None, ipaddr=None, connection=None):
 	if connection is None:
 		if server is None:
 			server = "yourdomain.com"
-		if key is None: 
+		if key is None:
 			key = "YOURKEYGOESHERE"
 		connection = _connect_api(server, key)
 	else:
 		server = connection._user
 		key = connection._key
 
-	if ipaddr is None: 
+	if ipaddr is None:
 		ipaddr = _grab_ip()
-	
+
 	print("-> Server: ", server, " Key: ", key, " IP: ", ipaddr)
 	result = connection.dns.add_record(record=str(server), value=str(ipaddr), type="A")
 	_check_result(result)
@@ -90,7 +90,7 @@ def update_ip(server=None, key=None, ipaddr=None, connection=None):
 def update_via_csv(csvfile=None):
 	if csvfile is None:
 		csvfile = domain_file
-	
+
 	ipaddr, updateable_servers = _grab_ip(), list()
 
 	with open(csvfile, 'r') as domain_csv:
@@ -98,7 +98,7 @@ def update_via_csv(csvfile=None):
 
 		for row in reader:
 			server, key = row[0], row[1]
-			connection = _connect_api(server, key)	
+			connection = _connect_api(server, key)
 			updateable = _check_record(connection, server, ipaddr)
 
 			if updateable:
@@ -106,55 +106,55 @@ def update_via_csv(csvfile=None):
 
 	for connection in updateable_servers:
 		update_ip(connection=connection)
-	
+
 	if to_be_culled:
 		for connect, server, value in to_be_culled:
-			connection.dns.remove_record(record=server, value=value, type='A')		
+			connection.dns.remove_record(record=server, value=value, type='A')
 
 def main():
 	import argparse
 
 	parser = argparse.ArgumentParser(description="Update your DreamHost DNS records.")
 	parser.add_argument(
-				'-f', 
+				'-f',
 				dest='file',
 			    	nargs=1,
-			   	metavar='FILE', 
-			    	type=str, 
+			   	metavar='FILE',
+			    	type=str,
 			    	help='Comma-separated server/key file.',
 			   	default=domain_file  )
-	
+
 	parser.add_argument(
-				'-s', 
-				dest='server', 
-				nargs=1, 
-				metavar='SERVER', 
-				type=str, 
+				'-s',
+				dest='server',
+				nargs=1,
+				metavar='SERVER',
+				type=str,
 				help="Server's domain name"  )
 
 	parser.add_argument(
 				'-k',
-				dest='key', 
-				nargs=1, 
-				metavar='KEY', 
-				type=str, 
+				dest='key',
+				nargs=1,
+				metavar='KEY',
+				type=str,
 				help= "DreamHost API Key"  )
 	parser.add_argument(
-				'-ip', 
-				dest='ip', 
-				nargs=1, 
-				metavar='IP ADDRESS', 
-				type=str, 
+				'-ip',
+				dest='ip',
+				nargs=1,
+				metavar='IP ADDRESS',
+				type=str,
 				help="Desired A record value"  )
 
 	a = parser.parse_args()
-	
+
 	args = a.server, a.key, a.ip
-	
+
 	manual_update =  all(arg is not None for arg in args)
 
 	insufficient_values_passed = any(arg is not None for arg in args)
-	
+
 	if manual_update:
 		update_ip(server=a.server[0], key=a.key[0], ipaddr=a.ip[0])
 	elif insufficient_values_passed:
@@ -162,6 +162,6 @@ def main():
 	else:
 		update_via_csv(csvfile=a.file)
 
-			
+
 if __name__ == '__main__':
 	main()
