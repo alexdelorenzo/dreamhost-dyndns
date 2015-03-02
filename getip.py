@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import re
 import urllib
 
@@ -8,7 +10,7 @@ def get_external_ip():
     return address
 
 def main():
-	print get_external_ip()
+    print get_external_ip()
 
 if __name__ == "__main__":
-	main()
+        main()
