@@ -85,22 +85,33 @@ def update_ip(server=None, key=None, ipaddr=None, connection=None):
 
     print("-> Server: ", server, " Key: ", key, " IP: ", ipaddr)
 
-    # Delete any custom A record before adding this one
+    # Delete any custom A record with a different IP, if any
+    record_up_to_date = False
     for record in connection.dns.list_records():
         if record['record'] == str(server) and record['type'] == 'A':
             value = record['value']
             type_ = record['type']
 
-            msg = "Delete custom DNS record {0} ({1}) = {2}..."
-            print msg.format(server, type_, value) ,
-            retcode = connection.dns.remove_record(record=str(server), value=value, type=type_)
-            if not retcode:
-                print 'done.'
-            else:
-                print 'ERROR'
+            if value == str(ipaddr):
+                record_up_to_date = True
 
-    result = connection.dns.add_record(record=str(server), value=str(ipaddr), type="A")
-    _check_result(result)
+            else:
+                msg = "Delete custom DNS record {0} ({1}) = {2}..."
+                print msg.format(server, type_, value) ,
+                kwargs = dict(record=str(server), value=value, type=type_)
+                retcode = connection.dns.remove_record(**kwargs)
+                if not retcode:
+                    print 'done.'
+                else:
+                    print 'ERROR'
+
+    if record_up_to_date:
+        msg = "'A' record is up to date and points to your IP ({0})"
+        print(msg.format(ipaddr))
+    else:
+        kwargs = dict(record=str(server), value=str(ipaddr), type="A")
+        result = connection.dns.add_record(**kwargs)
+        _check_result(result)
 
 def update_via_csv(csvfile=None):
     if csvfile is None:
