@@ -84,6 +84,21 @@ def update_ip(server=None, key=None, ipaddr=None, connection=None):
         ipaddr = _grab_ip()
 
     print("-> Server: ", server, " Key: ", key, " IP: ", ipaddr)
+
+    # Delete any custom A record before adding this one
+    for record in connection.dns.list_records():
+        if record['record'] == str(server) and record['type'] == 'A':
+            value = record['value']
+            type_ = record['type']
+
+            msg = "Delete custom DNS record {0} ({1}) = {2}..."
+            print msg.format(server, type_, value) ,
+            retcode = connection.dns.remove_record(record=str(server), value=value, type=type_)
+            if not retcode:
+                print 'done.'
+            else:
+                print 'ERROR'
+
     result = connection.dns.add_record(record=str(server), value=str(ipaddr), type="A")
     _check_result(result)
 
