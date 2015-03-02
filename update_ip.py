@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+from __future__ import print_function
+
 import getip
 import dreampylib
 import csv
@@ -97,13 +99,13 @@ def update_ip(server=None, key=None, ipaddr=None, connection=None):
 
             else:
                 msg = "Delete custom DNS record {0} ({1}) = {2}..."
-                print msg.format(server, type_, value) ,
+                print(msg.format(server, type_, value), end='')
                 kwargs = dict(record=str(server), value=value, type=type_)
                 retcode = connection.dns.remove_record(**kwargs)
                 if not retcode:
-                    print 'done.'
+                    print('done.')
                 else:
-                    print 'ERROR'
+                    print('ERROR')
 
     if record_up_to_date:
         msg = "'A' record is up to date and points to your IP ({0})"
