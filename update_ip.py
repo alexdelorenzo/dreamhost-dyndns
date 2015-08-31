@@ -5,7 +5,11 @@ import csv
 # one day, i'll wrap this up in a class.
 ## it's been a year, I'll never do it.
 domain_file, delim = 'domains.csv', ','
-to_be_culled = []
+
+# what kind of fool puts a mutable obj in global scope
+# instead of passing it around / being competent?
+# answer: me two years ago
+to_be_culled = [] 
 
 def _grab_ip():
 	ipaddr = getip.get_external_ip()
