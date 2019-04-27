@@ -16,7 +16,7 @@ def _grab_ip():
 	return ipaddr
  
 def _connect_api(server, key):
-	connection = DreampyLib(server, key)
+	connection = dreampylib.DreampyLib(server, key)
 
 	print("Connected to DH API: ", connection.IsConnected(), "(", server, ")")
 
@@ -119,7 +119,7 @@ def main():
 	parser = argparse.ArgumentParser(description="Update your DreamHost DNS records.")
 	parser.add_argument(
 				'-f', 
-				dest='file'
+				dest='file',
 			    	nargs=1,
 			   	metavar='FILE', 
 			    	type=str, 
